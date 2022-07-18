@@ -157,6 +157,11 @@ export const routes: IRoute[] = [
       {
         name: 'menu.blog.blogTable',
         key: 'blog/blogTable'
+      },
+      {
+        name: 'blog.blogPost',
+        key: 'blog/blogPost/[id]',
+        ignore: true
       }
     ]
   }

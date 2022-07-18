@@ -5,7 +5,7 @@ import setupMock from '@/utils/setupMock';
 const { list } = Mock.mock({
     'list|100': [
         {
-            id: /[0-9]{10}/,
+            'id|+1': 100000000,
             title: /博客[0-9]{5}/,
             category: () =>
                 Mock.Random.pick([

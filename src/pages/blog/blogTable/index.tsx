@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Table,
     Card,
-    PaginationProps,
     Button,
     Typography,
 } from '@arco-design/web-react';
@@ -11,6 +10,7 @@ import locale from './locale';
 import axios from 'axios';
 import './mock'
 import dayjs from 'dayjs';
+import Link from 'next/link';
 
 const { Title } = Typography;
 
@@ -38,12 +38,14 @@ function getColumns(t) {
             dataIndex: 'operation',
             headerCellStyle: { paddingLeft: '15px' },
             render: (_, record) => (
-                <Button
-                    type="text"
-                    size="small"
-                >
-                    {t['blogTable.columns.operations.view']}
-                </Button>
+                <Link href={`/blog/blogPost/${record.id}`}>
+                    <Button
+                        type="text"
+                        size="small"
+                    >
+                        {t['blogTable.columns.operations.view']}
+                    </Button>
+                </Link>
             ),
         },
     ];
