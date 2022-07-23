@@ -4,6 +4,7 @@ import {
     Card,
     Button,
     Typography,
+    PaginationProps,
 } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
@@ -59,23 +60,58 @@ function BlogTable() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const [pagination, setPatination] = useState<PaginationProps>({
+        sizeCanChange: true,
+        showTotal: true,
+        pageSize: 10,
+        current: 1,
+        pageSizeChangeResetCurrent: true,
+    });
+
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [pagination.current, pagination.pageSize]);
+
+    function onChangeTable({ current, pageSize }) {
+        setPatination({
+            ...pagination,
+            current,
+            pageSize,
+        });
+    }
 
     function fetchData() {
+        const { current, pageSize } = pagination;
+
         setLoading(true);
         axios
             .get('/api/blogs', {
+                params: {
+                    page: current,
+                    pageSize,
+                }
             })
             .then((res) => {
                 setData(res.data.list);
+                setPatination({
+                    ...pagination,
+                    current,
+                    pageSize,
+                    total: res.data.total,
+                });
                 setLoading(false);
             });
     }
 
 
-    return (<Card> <Title heading={6}>{t['menu.table.blogTable']}</Title> <Table rowKey="id" loading={loading} columns={columns} data={data}></Table> </Card>);
+    return (<Card> <Title heading={6}>{t['menu.table.blogTable']}</Title>
+        <Table rowKey="id"
+            loading={loading}
+            columns={columns}
+            pagination={pagination}
+            onChange={onChangeTable}
+            data={data} />
+    </Card>);
 }
 
 export default BlogTable;
