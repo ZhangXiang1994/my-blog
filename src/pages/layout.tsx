@@ -13,6 +13,7 @@ import {
   IconMenuFold,
   IconMenuUnfold,
   IconBook,
+  IconDice
 } from '@arco-design/web-react/icon';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -53,6 +54,8 @@ function getIconFromKey(key) {
       return <IconUser className={styles.icon} />;
     case 'blog':
       return <IconBook className={styles.icon} />;
+    case 'game':
+      return <IconDice className={styles.icon} />;
     default:
       return <div className={styles['icon-empty']} />;
   }

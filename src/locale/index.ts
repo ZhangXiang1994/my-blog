@@ -30,6 +30,8 @@ const i18n = {
     'menu.dashboard.workplace': 'Workplace',
     'menu.blog': 'Blog',
     'menu.blog.blogTable': 'Blog Table',
+    'menu.game': 'Game',
+    'menu.game.gameOfLife': 'Game of Life',
     'navbar.logout': 'Logout',
     'settings.title': 'Settings',
     'settings.themeColor': 'Theme Color',

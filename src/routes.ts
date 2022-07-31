@@ -164,6 +164,16 @@ export const routes: IRoute[] = [
         ignore: true
       }
     ]
+  },
+  {
+    name: 'menu.game',
+    key: 'game',
+    children: [
+      {
+        name: 'menu.game.gameOfLife',
+        key: 'game/gameOfLife'
+      }
+    ]
   }
 ];
 
